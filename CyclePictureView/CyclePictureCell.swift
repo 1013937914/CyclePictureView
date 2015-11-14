@@ -80,6 +80,7 @@ class CyclePictureCell: UICollectionViewCell {
     private func setupImageView() {
         imageView = UIImageView()
         imageView.contentMode = .ScaleAspectFill
+        imageView.clipsToBounds = true
         self.addSubview(imageView)
     }
     

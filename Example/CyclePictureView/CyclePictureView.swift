@@ -235,7 +235,9 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
         //重新加载数据
         self.collectionView.reloadData()
         self.setupPageControl()
-        self.setupTimer(nil)
+        if self.autoScroll {
+            self.setupTimer(nil)
+        }
     }
     
     override func layoutSubviews() {
