@@ -7,7 +7,7 @@
 #使用
 * 要求
 
-网络图片加载依赖[Kingfisher][id]框架，请先导入[Kingfisher][id]
+网络图片加载依赖[Kingfisher][id]框架，请先导入[Kingfisher][id],如果想使用其他框架列如SDWebImage只需将*CyclePictureCell*中设置图片的*kf_setImageWithURL*改成*sd_setImageWithURL*。
 
 [id]: https://github.com/onevcat/Kingfisher
 

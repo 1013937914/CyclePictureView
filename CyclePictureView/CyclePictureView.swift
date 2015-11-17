@@ -194,6 +194,10 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
         
         self.pageControl?.removeFromSuperview()
         
+        guard self.imageBox!.imageArray.count > 1 else {
+            return
+        }
+        
         if self.showPageControl {
             let pageControl = UIPageControl()
             pageControl.numberOfPages = self.imageBox!.imageArray.count
@@ -231,7 +235,12 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
             return
         }
         
-        self.actualItemCount =  self.needEndlessScroll ? imageBox.imageArray.count * imageTimes : imageBox.imageArray.count
+        if imageBox.imageArray.count > 1 {
+            self.actualItemCount =  self.needEndlessScroll ? imageBox.imageArray.count * imageTimes : imageBox.imageArray.count
+        }else {
+            self.actualItemCount = 1
+        }
+        
         //重新加载数据
         self.collectionView.reloadData()
         self.setupPageControl()
