@@ -64,6 +64,8 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
     var pageControlAliment: PageControlAliment = .CenterBottom
     /// 加载网络图片使用的占位图片
     var placeholderImage: UIImage?
+    /// 图片的对齐模式
+    var pictureContentMode: UIViewContentMode?
     
     // 一些cell文字描述的属性
     var detailLableTextFont: UIFont?
@@ -116,11 +118,7 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
     private var collectionView: UICollectionView!
     private let cellID: String = "CyclePictureCell"
     private var flowLayout: UICollectionViewFlowLayout?
-//    override var frame: CGRect {
-//        didSet {
-//            self.flowLayout?.itemSize = frame.size
-//        }
-//    }
+
      // MARK: - 初始化方法
     
     init(frame: CGRect, localImageArray: [String]?) {
@@ -174,7 +172,7 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
         self.flowLayout = flowLayout
         
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: flowLayout)
-        collectionView.backgroundColor = UIColor.orangeColor()
+//        collectionView.backgroundColor = UIColor.orangeColor()
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.bounces = false
@@ -258,12 +256,13 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
         //解决从SB中加载时，contentInset.Top默认为64的问题
         self.collectionView.contentInset = UIEdgeInsetsZero
         
+        self.showFirstImagePageInCollectionView(self.collectionView)
+        
         guard let pageControl = self.pageControl else {
             return
         }
         //PageControlAlimentProtocol协议方法，用于调整对齐
         self.AdjustPageControlPlace(pageControl)
-        self.showFirstImagePageInCollectionView(self.collectionView)
     }
     /**
     设置定时器,EndlessCycleProtocol提供
@@ -324,6 +323,10 @@ extension CyclePictureView {
         
         if let placeholderImage = self.placeholderImage {
             cell.placeholderImage = placeholderImage
+        }
+        
+        if let pictureContentMode = self.pictureContentMode {
+            cell.pictureContentMode = pictureContentMode
         }
         
         if let imageBox = self.imageBox {
