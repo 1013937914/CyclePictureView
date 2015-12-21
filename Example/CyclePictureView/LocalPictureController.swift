@@ -14,7 +14,7 @@ class LocalPictureController: UIViewController, CyclePictureViewDelegate {
     var localImageArray: [String] = {
         
         var array: [String] = []
-        for i in 1...5 {
+        for i in 1...1 {
             array.append("\(i)")
         }
         return array
