@@ -32,7 +32,7 @@ class WebPictureController: UIViewController {
         cyclePictureView.imageURLArray = imageURLArray
         cyclePictureView.imageDetailArray = imageDetailArray
         cyclePictureView.autoScroll = false
-
+        cyclePictureView.placeholderImage = UIImage(named: "302")
         cyclePictureView.timeInterval = 1
         cyclePictureView.detailLableBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
     }

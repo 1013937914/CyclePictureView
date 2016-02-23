@@ -256,12 +256,13 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
         //解决从SB中加载时，contentInset.Top默认为64的问题
         self.collectionView.contentInset = UIEdgeInsetsZero
         
+        self.showFirstImagePageInCollectionView(self.collectionView)
+        
         guard let pageControl = self.pageControl else {
             return
         }
         //PageControlAlimentProtocol协议方法，用于调整对齐
         self.AdjustPageControlPlace(pageControl)
-        self.showFirstImagePageInCollectionView(self.collectionView)
     }
     /**
     设置定时器,EndlessCycleProtocol提供
