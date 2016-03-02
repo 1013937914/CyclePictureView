@@ -305,7 +305,8 @@ extension CyclePictureView {
         }
 
         let offsetIndex = self.collectionView.contentOffset.x / self.flowLayout!.itemSize.width
-        pageControl.currentPage = Int(offsetIndex % CGFloat(self.imageBox!.imageArray.count) + 0.5)
+        let currentIndex = Int(offsetIndex % CGFloat(self.imageBox!.imageArray.count) + 0.5)
+        pageControl.currentPage = currentIndex == self.imageBox!.imageArray.count ? 0 :currentIndex
     }
 
 }
