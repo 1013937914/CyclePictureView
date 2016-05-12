@@ -14,14 +14,15 @@
 import UIKit
 
 class CyclePictureCell: UICollectionViewCell {
-
+    
     var imageSource: ImageSource = ImageSource.Local(name: ""){
         didSet {
             switch imageSource {
             case let .Local(name):
                 self.imageView.image = UIImage(named: name)
             case let .Network(urlStr):
-                self.imageView.sd_setImageWithURL(NSURL(string: urlStr)!, placeholderImage: placeholderImage)
+                let encodeString = urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+                self.imageView.sd_setImageWithURL(NSURL(string: encodeString)!, placeholderImage: placeholderImage)
             }
         }
     }
@@ -32,7 +33,7 @@ class CyclePictureCell: UICollectionViewCell {
         didSet {
             detailLable.hidden = false
             detailLable.text = imageDetail
-
+            
         }
     }
     
@@ -77,10 +78,10 @@ class CyclePictureCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         self.setupImageView()
         self.setupDetailLable()
-//        self.backgroundColor = UIColor.grayColor()
+        //        self.backgroundColor = UIColor.grayColor()
     }
     
     private func setupImageView() {
@@ -96,7 +97,7 @@ class CyclePictureCell: UICollectionViewCell {
         detailLable.shadowColor = UIColor.grayColor()
         detailLable.numberOfLines = 0
         detailLable.backgroundColor = detailLableBackgroundColor
-
+        
         detailLable.hidden = true //默认是没有描述的，所以隐藏它
         
         self.addSubview(detailLable!)
@@ -109,7 +110,7 @@ class CyclePictureCell: UICollectionViewCell {
         super.layoutSubviews()
         
         imageView.frame = self.bounds
-
+        
         if let _ = self.imageDetail {
             let lableX: CGFloat = 0
             let lableH: CGFloat = detailLableHeight
